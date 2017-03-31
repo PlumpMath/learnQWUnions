@@ -10,25 +10,30 @@
 
 (def init-data
   {:dashboard/items
-   [{:id 0 :type :dashboard/post
+   [{:id 0
+     :type :dashboard/post
      :author "Laura Smith"
      :title "A Post!"
      :content "Lorem ipsum dolor sit amet, quem atomorum te quo"
      :favorites 0}
-    {:id 1 :type :dashboard/photo
+    {:id 1
+     :type :dashboard/photo
      :title "A Photo!"
      :image "photo.jpg"
      :caption "Lorem ipsum"
      :favorites 0}
-    {:id 2 :type :dashboard/post
+    {:id 2
+     :type :dashboard/post
      :title "Jim Jacobs"
      :content "Lorem ipsum dolor sit amet, quem atomorum te quo"
      :favorites 0}
-    {:id 3 :type :dashboard/graphic
+    {:id 3
+     :type :dashboard/graphic
      :title "charts and Stufff!"
      :image "chart.jpg"
      :favorites 0}
-    {:id 4 :type :dashboard/post
+    {:id 4
+     :type :dashboard/post
      :author "May Fields"
      :title "Yet Another Post!"
      :content "Lorem ipsum dolor sit amet, quem atomorum te quo"
@@ -95,8 +100,8 @@
         (dom/div nil
                  (({:dashboard/post    post
                     :dashboard/photo   photo
-                    :dashboard/graphic graphic} type
-                   (om/props this))))
+                    :dashboard/graphic graphic} type)
+                  (om/props this)))
         (dom/div nil
                  (dom/p nil (str "Favorites: " favorites))
                  (dom/button
@@ -128,7 +133,7 @@
 
 (defmulti mutate om/dispatch)
 
-(defmethod mutate 'dashboard/favorite
+(defmethod mutate `dashboard/favorite
   [{:keys [state]} k {:keys [ref]}]
   {:action
    (fn []
